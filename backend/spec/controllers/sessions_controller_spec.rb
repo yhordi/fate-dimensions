@@ -17,8 +17,8 @@ describe SessionsController do
       before(:each) do
         post :create
       end
-      it 'redirects to the root' do
-        expect(response.status).to eq(302)
+      it 'responds with a 200' do
+        expect(response.status).to eq(200)
       end
       it 'sends an error to the view in a flash message' do
         expect(JSON.parse(response.body)["error"]).to eq("That username does not exist.")

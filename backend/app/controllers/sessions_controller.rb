@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
       if user.nil?
         render json: { :error => "That username does not exist." }
       else
-        redirect_to root_path, :flash => { :error => "That password is invaid." }
+        render json: { :error => "That password is invaid." }
       end
     end
   end

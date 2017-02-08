@@ -26,10 +26,10 @@ describe SessionsController do
     end
     context 'with an incorrect password' do
       before(:each) do
-        post :create, name: user.name
+        post :create, params: {name: user.name}
       end
       it 'sends an error to the view in a flash message' do
-        expect(session[:flash]["flashes"]["error"]).to eq("That password is invaid.")
+        expect(JSON.parse(response.body)["error"]).to eq("That password is invaid.")
       end
     end
   end

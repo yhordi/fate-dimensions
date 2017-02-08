@@ -21,10 +21,7 @@ class SystemsController < ApplicationController
   def index
     @user = current_user
     @systems = System.order(created_at: :desc).where(user_id: @user)
-    respond_to do |format|
-      format.html
-      format.json { render :json => @systems.to_json}
-    end
+    render :json => @systems.to_json
   end
 
   def edit

@@ -1,6 +1,6 @@
 describe SystemsController do
   let(:user) { FactoryGirl.create :user }
-  let!(:saved_system) { FactoryGirl.create :system }
+  let!(:saved_system) { FactoryGirl.create :system, user_id: user.id }
   let(:system) {FactoryGirl.build :system }
   describe '#index' do
     before(:each) do

@@ -42,8 +42,8 @@ describe SessionsController do
   end
   describe '#show' do
     it 'assigns the @user instance variable to current_user' do
-      post :create, { name: user.name, password: user.password }
-      get :show, id: session[:id]
+      post :create, params: { name: user.name, password: user.password }
+      get :show, params: {id: session[:id]}
       expect(assigns(:user)).to eq(current_user)
     end
   end

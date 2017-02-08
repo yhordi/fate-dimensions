@@ -104,7 +104,6 @@ ActiveRecord::Schema.define(version: 20160813011152) do
     t.string   "password_digest"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "picture",         default: "no-image.png"
     t.text     "bio"
     t.date     "birthday"
   end

@@ -1,5 +1,7 @@
 describe Npc do
-  let(:npc) { FactoryGirl.create :npc }
+  let(:user) { FactoryGirl.create :user }
+  let(:system) { FactoryGirl.create :system, user_id: user.id }
+  let(:npc) { FactoryGirl.create :npc, system_id: system.id }
   let(:physique) { CharacterSkill.new(name: 'Physique', level: 0)}
   let(:will) { CharacterSkill.new(name: 'Will', level: 0, npc_id: 1)}
   let(:consequence) { FactoryGirl.create :consequence }

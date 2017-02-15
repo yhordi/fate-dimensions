@@ -4,7 +4,7 @@ describe SessionsController do
   context '#create' do
     context 'with good params' do
       before(:each) do
-        post :create, {name: user.name, password: user.password}
+        post :create, params: {name: user.name, password: user.password}
       end
       it 'redirects to the root' do
         expect(response.status).to eq(302)
@@ -15,7 +15,7 @@ describe SessionsController do
     end
     context 'with no username' do
       before(:each) do
-        post :create
+        post :create, params: {}
       end
       it 'responds with a 200' do
         expect(response.status).to eq(200)
@@ -35,8 +35,8 @@ describe SessionsController do
   end
   describe '#destroy' do
     it 'redirects to the root path' do
-      post :create, { name: user.name, password: user.password }
-      delete :destroy, id: session[:id]
+      post :create, params: { name: user.name, password: user.password }
+      delete :destroy, params: {id: session[:id]}
       expect(response.status).to eq(302)
     end
   end

@@ -2,8 +2,11 @@ class NpcsController < ApplicationController
   def create
     npc = Npc.new(npc_params)
     npc.system_id = params["npc"]["system_id"]
-    npc.save!
-    render json: npc, include: [:character_skills, :stunts, :aspects, :consequences]
+    if npc.save
+      render json: npc, include: [:character_skills, :stunts, :aspects, :consequences]
+    else
+      render json: npc.errors.full_messages
+    end
   end
 
   def destroy

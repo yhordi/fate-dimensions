@@ -20,7 +20,7 @@ describe SystemsController do
 
     context 'on valid params' do
       before(:each) do
-        post :create, {system: {name: system.name, description: system.description}}
+        post :create, params: {system: {name: system.name, description: system.description}}
       end
       it 'saves a new system to the database' do
         expect(System.last.name).to eq(system.name)
@@ -39,7 +39,7 @@ describe SystemsController do
   describe '#show' do
     before(:each) do
       session[:id] = user.id
-      get :show, {id: saved_system.id}
+      get :show, params: {id: saved_system.id}
     end
     it 'assigns the @system instance variable as a specific system' do
       expect(assigns(:system)).to eq(saved_system)
@@ -47,12 +47,12 @@ describe SystemsController do
   end
   describe '#update' do
     it 'updates the attributes of a saved system' do
-      patch :update, {system: {name: "Fighting Time", description: saved_system.description}, id: saved_system.id}
+      patch :update, params: {system: {name: "Fighting Time", description: saved_system.description}, id: saved_system.id}
       expect(System.last.name).to eq('Fighting Time')
     end
     context 'with unchanged data' do
       before(:each) do
-         patch :update, {system: {name: saved_system.name, description: saved_system.description}, id: saved_system.id}
+         patch :update, params: {system: {name: saved_system.name, description: saved_system.description}, id: saved_system.id}
       end
       it 'assigns the @system instance variable as a specific system' do
         expect(assigns(:system)).to eq(saved_system)
@@ -75,10 +75,10 @@ describe SystemsController do
   end
   describe '#destroy' do
     it 'deletes a system in the database' do
-      expect{delete :destroy, id: saved_system.id}.to change{System.all.count}.by(-1)
+      expect{delete :destroy, params: {id: saved_system.id}}.to change{System.all.count}.by(-1)
     end
     it 'responds with json of all systems' do
-      delete :destroy, id: saved_system.id
+      delete :destroy, params: {id: saved_system.id}
       expect(response.body).to eq(System.all.to_json)
     end
   end

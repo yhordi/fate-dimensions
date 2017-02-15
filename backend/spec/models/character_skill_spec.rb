@@ -1,8 +1,8 @@
 describe CharacterSkill do
   let(:user) { FactoryGirl.create :user }
-  let(:system) { FactoryGirl.create :system }
-  let(:npc) { FactoryGirl.create :npc, system_id: system.id, user_id: user.id }
-  let(:physique) { CharacterSkill.new(name: 'Physique', level: 0, npc_id: npc.id)}
+  let(:system) { FactoryGirl.create :system, user_id: user.id }
+  let(:npc) { FactoryGirl.create :npc, system_id: system.id}
+  let(:physique) { CharacterSkill.new(name: 'Physique', level: 0, npc_id: npc.id) }
   let(:will) { CharacterSkill.new(name: 'Will', level: 0, npc_id: npc.id)}
   describe 'validations' do
     it { is_expected.to validate_presence_of :name }

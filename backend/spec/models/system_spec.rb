@@ -1,5 +1,6 @@
 describe System do
-  let(:system) { FactoryGirl.build :system}
+  let(:user) { FactoryGirl.create :user}
+  let(:system) { FactoryGirl.create :system, user_id: user.id}
   describe 'associations' do
     it { should belong_to :user }
   end

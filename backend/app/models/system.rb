@@ -16,7 +16,7 @@ class System < ActiveRecord::Base
       p "seeding #{skill[:name]}"
       new_skill = Skill.new(skill)
       new_skill.system_id = system_id
-      new_skill.save
+      new_skill.save!
     end
   end
 end

@@ -1,5 +1,6 @@
 describe CharacterSkill do
-  let(:npc) { FactoryGirl.create :npc }
+  let(:system) { create :system }
+  let(:npc) { FactoryGirl.create :npc, system_id: system.id }
   let(:physique) { CharacterSkill.new(name: 'Physique', level: 0, npc_id: npc.id)}
   let(:will) { CharacterSkill.new(name: 'Will', level: 0, npc_id: npc.id)}
   describe 'validations' do

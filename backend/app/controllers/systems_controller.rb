@@ -5,7 +5,7 @@ class SystemsController < ApplicationController
     @system = System.new(system_params)
     @system.user_id = current_user.id
     @system.save
-    @system.seed_defaults(@system.id)
+    @system.seed_defaults(System.last.id)
     if System.last == @system
       render json: System.last
     else

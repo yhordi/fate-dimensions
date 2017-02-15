@@ -1,5 +1,7 @@
 describe Consequence do
-  let!(:npc) { FactoryGirl.create :npc }
+  let(:user) { FactoryGirl.create :user }
+  let(:system) { FactoryGirl.create :system, user_id: user.id }
+  let!(:npc) { FactoryGirl.create :npc, system_id: system.id }
   let(:consq) { Consequence.new(severity: 'mild', name: 'headache', shift_value: 2, npc_id: 1) }
   context 'validations' do
     context 'will pass validations' do

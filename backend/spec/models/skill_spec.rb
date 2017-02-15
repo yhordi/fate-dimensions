@@ -1,6 +1,7 @@
 describe Skill do
-  let(:system) { FactoryGirl.create :system }
-  let!(:skill) { FactoryGirl.create :skill}
+  let(:user) { FactoryGirl.create :user }
+  let(:system) { FactoryGirl.create :system, user_id: user.id }
+  let!(:skill) { FactoryGirl.create :skill, system_id: system.id }
   describe 'validations' do
     it { is_expected.to validate_presence_of :name }
     it { is_expected.to validate_uniqueness_of(:name).scoped_to(:system_id) }

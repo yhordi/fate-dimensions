@@ -24,12 +24,6 @@ class SystemsController < ApplicationController
     render :json => @systems.to_json
   end
 
-  def edit
-    @settings = SettingsHelper.settings
-    @system = System.find(params[:id])
-    render json: @system
-  end
-
   def update
     @system = System.find(params[:id])
     @system.default_skills(params)

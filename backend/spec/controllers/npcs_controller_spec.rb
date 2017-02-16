@@ -1,7 +1,7 @@
 describe NpcsController do
   let(:user) { FactoryGirl.create :user}
   let(:system) { FactoryGirl.create :system, user_id: user.id}
-  let(:npc) { FactoryGirl.create :npc, system_id: system.id }
+  let!(:npc) { FactoryGirl.create :npc, system_id: system.id }
   let(:new_npc) { FactoryGirl.build :npc }
   let(:strength) { CharacterSkill.create(name: "Strength", level: 3)}
   let(:will) { CharacterSkill.create(name: "Will", level: 3)}
@@ -68,6 +68,15 @@ describe NpcsController do
     end
     it 'renders JSON containing the updated npc' do
       expect(response.body).to include('laksdjflaskdjflak013948 i1h'.to_json)
+    end
+  end
+  describe '#destroy' do
+    it 'deletes an npc in the database' do
+      expect{delete :destroy, params: {id: npc.id}}.to change{Npc.all.count}.by(-1)
+    end
+    it 'responds with json of all systems' do
+      delete :destroy, params: {id: npc.id}
+      expect(response.body).to eq(Npc.all.to_json)
     end
   end
 end

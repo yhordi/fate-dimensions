@@ -36,7 +36,7 @@ describe NpcsController do
       get :index, params: {system_id: system.id}
     end
     it 'renders JSON containing all npcs associated with a system' do
-      expect(response.body).to include(Npc.all.to_json)
+      expect(response.body).to include(npc.name.to_json)
     end
     it 'responds with a status of 200' do
       expect(response.status).to eq(200)

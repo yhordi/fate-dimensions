@@ -62,17 +62,6 @@ describe SystemsController do
       end
     end
   end
-  xdescribe '#edit' do
-    before(:each) do
-      get :edit, params: {id: saved_system.id}
-    end
-    it 'assigns the @system instance variable' do
-      expect(assigns(:system)).to eq(saved_system)
-    end
-    it 'renders json of the system in question to the view' do
-      expect(response.body).to eq(saved_system.to_json)
-    end
-  end
   describe '#destroy' do
     it 'deletes a system in the database' do
       expect{delete :destroy, params: {id: saved_system.id}}.to change{System.all.count}.by(-1)
